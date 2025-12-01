@@ -1,141 +1,40 @@
-🏦 The Algorithmic Trading Council
-
-A Multi-Agent Financial Decision System powered by Google Gemini
-
-"If you ask a single AI for financial advice, it might hallucinate. If you ask a Council, they debate until they find the truth."
-
-📖 Overview
-
-The Algorithmic Trading Council is an autonomous AI agent system designed to simulate a professional institutional trading desk. Built for the Google AI Agents Intensive Capstone (Enterprise Track), it solves the problem of "single-agent bias" in financial modeling.
-
-Instead of a single bot making a "Buy" decision, this project orchestrates five specialized agents with conflicting goals (e.g., a risk-averse manager vs. an aggressive technical trader) to debate, critique, and vote on a trade.
-
-🏗️ Architecture
-
-This project uses a Hierarchical "Mixture of Agents" Pattern:
-
-graph TD
-    User[User Input: Ticker NVDA] --> Orch[Orchestrator]
+🚀 The Multi Agent for Trading and Crypto 24/7 Market Monitor powered by Google Gemini"Crypto never sleeps. Neither should your analysis. A multi-agent council that watches the charts so you don't have to."📖 OverviewThe Crypto Sentinel AI is a continuous monitoring agent designed for the Google AI Agents Intensive Capstone. Unlike standard trading bots that simply check prices, this system employs a Council of AI Agents to analyze market structure, news sentiment, and technical indicators in real-time.It runs in a continuous loop, refreshing every 5 minutes to provide disciplined, risk-adjusted signals.🏗️ ArchitectureThis project uses a Cyclic Multi-Agent Pattern with a self-healing API layer:graph TD
+    Start[🚀 Init: Auto-Detect Gemini Model] --> Loop
     
-    subgraph "Analyst Tier (Parallel)"
-        Orch --> Fund[🔵 Fundamental Agent]
-        Orch --> Tech[📈 Technical Agent]
-        Orch --> Sent[📰 Sentiment Agent]
+    subgraph "Continuous Monitoring Loop (Every 5 Mins)"
+        Loop[⏱️ Timer Trigger] --> Data[📡 Market Data Provider]
+        Data -->|Price + News| Tech[📈 Technical Analyst]
+        Data -->|Headlines| Sent[📰 Sentiment Analyst]
+        
+        Tech --> Head[⚖️ Head Trader]
+        Sent --> Head
+        
+        Head -->|Final Verdict| Output[🖥️ Terminal Display]
+        Output --> Sleep[💤 Sleep 300s]
+        Sleep --> Loop
     end
-    
-    Fund --> Risk[🛡️ Risk Manager]
-    Tech --> Risk
-    Sent --> Risk
-    
-    Risk -->|Veto or Approval| Head[⚖️ Head Trader]
-    Fund --> Head
-    Tech --> Head
-    Sent --> Head
-    
-    Head --> Final[💰 Final Verdict JSON]
+🤖 The CouncilAgentRoleFunctionTechnical AnalystChart ReaderAnalyzes RSI, MACD, and Price Action. Ignores news completely.Sentiment AnalystNews ReaderAnalyzes headlines to gauge "Fear" vs "Greed". Ignores the chart.Head TraderRisk ManagerSynthesizes conflicting reports. If Technicals say "Buy" but Sentiment says "Panic", it orders a HOLD.✨ Key Technical Features1. 🛡️ Self-Healing API LogicThe system automatically detects the best available Google Gemini model.Priority 1: gemini-2.5-flash (Fastest, Newest)Priority 2: gemini-1.5-flash (Stable Fallback)Priority 3: gemini-pro (Legacy Fallback)Benefit: If one model is down or rate-limited, the bot switches automatically without crashing.2. 🚦 Smart Rate LimitingTo respect free-tier API limits, the agents function asynchronously with built-in delays (time.sleep). If a 429 Too Many Requests error occurs, the system pauses and retries intelligently.3. 📡 Real-Time Data PipelineIntegrated with yfinance to fetch live crypto prices and news.Automatically handles ticker symbols (e.g., converts BTC to BTC-USD).Fetches Price, 24h Change, and News Headlines dynamically.🚀 Installation & UsagePrerequisitesPython 3.10 or higherA Google Cloud API Key (for Gemini)1. Clone the Repositorygit clone [https://github.com/YourUsername/Crypto-Sentinel-AI.git](https://github.com/YourUsername/Crypto-Sentinel-AI.git)
+cd Crypto-Sentinel-AI
+2. Install Dependenciespip install -r requirements.txt
+(Dependencies: google-generativeai, yfinance)3. Set your API KeyYou can set it as an environment variable (recommended) or input it when prompted.export GEMINI_API_KEY="your_api_key_here"
+4. Run the Sentinelpython crypto_trading_agent.py
+📊 Example OutputWhen running the monitor for Ethereum (ETH):==================================================
+🚀 CRYPTO SENTINEL AGENT INITIALIZED
+==================================================
+Enter asset to monitor: ETH
 
+✅ Monitoring ETH started. Press Ctrl+C to stop.
 
-🤖 The Agents
+⏱️  TIME: 16:30:00 | 💰 PRICE: $2,745.20 (-1.2%)
+--------------------------------------------------
+Thinking...
+📈 Tech Signal: BUY (RSI: 42 - Oversold Bounce Likely)
+📰 News Mood:   Neutral (Uncertainty regarding ETF flows)
+🟡 FINAL DECISION: HOLD (Conf: 0.65)
+📝 Rationale: Technicals show a potential bounce, but lack of positive sentiment confirmation makes a Buy risky. Waiting for confirmation.
 
-Agent
-
-Role
-
-Personality
-
-Fundamental Analyst
-
-Value Investor
-
-Obsessed with P/E ratios, revenue growth, and long-term health.
-
-Technical Analyst
-
-Day Trader
-
-Ignores news; focuses strictly on RSI, MACD, and chart patterns.
-
-Sentiment Analyst
-
-Market Psychologist
-
-Reads news headlines to gauge "Fear" vs "Greed."
-
-Risk Manager
-
-The Gatekeeper
-
-The "Devil's Advocate." Can veto a trade if volatility is too high, regardless of potential profit.
-
-Head Trader
-
-Decision Maker
-
-Synthesizes all reports and issues the final Buy/Sell/Hold command.
-
-✨ Key Features
-
-Type-Safe Communication: Agents communicate strictly via structured JSON (using Python Dataclasses and Enums), preventing the "rambling" text issues common in chatbots.
-
-Adversarial Logic: The system includes a negative feedback loop (The Risk Manager) to reduce hallucinations and false positives.
-
-Weighted Consensus: The Head Trader uses a weighted algorithm (Fundamental > Technical > Sentiment) to break deadlocks.
-
-Explainable AI: Every decision outputs a rationale field, explaining why the trade was chosen.
-
-🚀 Installation & Usage
-
-Prerequisites
-
-Python 3.10 or higher
-
-A Google Cloud API Key (for Gemini)
-
-1. Clone the Repository
-
-git clone [https://github.com/YourUsername/Algorithmic-Trading-Council.git](https://github.com/YourUsername/Algorithmic-Trading-Council.git)
-cd Algorithmic-Trading-Council
-
-
-2. Install Dependencies
-
-pip install -r requirements.txt
-
-
-(Note: Main dependency is google-generativeai)
-
-3. Set your API Key
-
-You can set it as an environment variable or paste it directly in the config section of the script.
-
-export GEMINI_API_KEY="your_api_key_here"
-
-
-4. Run the Council
-
-python stock_prediction_agent.py
-
-
-📊 Example Output
-
-When running the simulation for NVIDIA (NVDA):
-
-{
-  "TICKER": "NVDA",
-  "FINAL_DECISION": "HOLD",
-  "CONFIDENCE": 85.0,
-  "RATIONALE": "Fundamental signals are strong due to AI chip demand, but Technicals indicate the stock is overextended (RSI 72). Risk Manager advises caution due to regulatory scrutiny.",
-  "ACTION_PLAN": {
-      "stop_loss": 128.50,
-      "target_price": 145.00,
-      "position_size": "Small"
-  }
-}
-
-
-📂 Project Structure
-
-├── stock_prediction_agent.py   # The main application code
-├── requirements.txt            # Python dependencies
-├── README.md                   # Project documentation
-└── assets/                     # Images and diagrams
+💤 Sleeping for 300 seconds...
+📂 Project Structure├── crypto_trading_agent.py   # Main application logic
+├── requirements.txt          # Python dependencies
+├── README.md                 # Documentation
+🔮 Future RoadmapTelegram Integration: Send alerts directly to a Telegram channel.Portfolio Tracking: Track PnL of simulated trades over time.Multi-Asset Mode: Monitor BTC, ETH, and SOL simultaneously.⚠️ DisclaimerThis project is for educational purposes only. The "Trade Signals" generated are simulations based on AI analysis and should not be taken as financial advice. Trading cryptocurrency involves significant risk.
