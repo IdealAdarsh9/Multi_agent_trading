@@ -93,7 +93,7 @@ A Google Cloud API Key (for Gemini)
 
 1. Clone the Repository
 
-git clone [https://github.com/YourUsername/Algorithmic-Trading-Council.git](https://github.com/YourUsername/Algorithmic-Trading-Council.git)
+git clone [https://github.com/YourUsername/Algorithmic-Trading-Council.git]([https://github.com/IdealAdarsh9/Multi_agent_trading.git])
 cd Algorithmic-Trading-Council
 
 
@@ -134,7 +134,6 @@ When running the simulation for NVIDIA (NVDA):
 
 
 📂 Project Structure
-
 ├── stock_prediction_agent.py   # The main application code
 ├── requirements.txt            # Python dependencies
 ├── README.md                   # Project documentation
