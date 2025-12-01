@@ -93,7 +93,7 @@ A Google Cloud API Key (for Gemini)
 
 1. Clone the Repository
 
-git clone [https://github.com/YourUsername/Algorithmic-Trading-Council.git]([https://github.com/IdealAdarsh9/Multi_agent_trading.git])
+git clone [https://github.com/YourUsername/Algorithmic-Trading-Council.git](https://github.com/YourUsername/Algorithmic-Trading-Council.git)
 cd Algorithmic-Trading-Council
 
 
@@ -123,7 +123,7 @@ When running the simulation for NVIDIA (NVDA):
 {
   "TICKER": "NVDA",
   "FINAL_DECISION": "HOLD",
-  "CONFIDENCE": 85.0%,
+  "CONFIDENCE": 85.0,
   "RATIONALE": "Fundamental signals are strong due to AI chip demand, but Technicals indicate the stock is overextended (RSI 72). Risk Manager advises caution due to regulatory scrutiny.",
   "ACTION_PLAN": {
       "stop_loss": 128.50,
@@ -134,6 +134,7 @@ When running the simulation for NVIDIA (NVDA):
 
 
 📂 Project Structure
+
 ├── stock_prediction_agent.py   # The main application code
 ├── requirements.txt            # Python dependencies
 ├── README.md                   # Project documentation
